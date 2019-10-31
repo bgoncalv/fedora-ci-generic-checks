@@ -85,10 +85,10 @@ timestamps {
                                            defaultValue: '172.30.254.79:5000',
                                            description: 'Docker repo url for Openshift instance'),
                                     string(name: 'OPENSHIFT_NAMESPACE',
-                                           defaultValue: 'fedora-package-checks',
+                                           defaultValue: 'continuous-infra',
                                            description: 'Project namespace for Openshift operations'),
                                     string(name: 'OPENSHIFT_SERVICE_ACCOUNT',
-                                           defaultValue: 'fedora-check-jenkins',
+                                           defaultValue: 'jenkins',
                                            description: 'Service Account for Openshift operations'),
                                     string(name: 'MSG_PROVIDER',
                                            defaultValue: '',
@@ -132,7 +132,7 @@ timestamps {
                     // This adds the package-checks container to the pod.
                     containerTemplate(name: 'package-checks',
                             alwaysPullImage: true,
-                            image: DOCKER_REPO_URL + '/' + OPENSHIFT_NAMESPACE + '/fedora-generic-check-worker:' + FEDORACI_RUNNER_TAG,
+                            image: DOCKER_REPO_URL + '/' + OPENSHIFT_NAMESPACE + '/fedoraci-runner:' + FEDORACI_RUNNER_TAG,
                             ttyEnabled: true,
                             command: 'cat',
                             envVars: [
